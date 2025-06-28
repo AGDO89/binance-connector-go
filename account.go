@@ -1373,29 +1373,29 @@ type OrderOCOResponse struct {
 		ClientOrderId string `json:"clientOrderId"`
 	} `json:"orders"`
 	OrderReports []struct {
-		Symbol                  string  `json:"symbol"`
-		OrderId                 int64   `json:"orderId"`
-		OrderListId             int64   `json:"orderListId"`
-		ClientOrderId           string  `json:"clientOrderId"`
-		TransactTime            uint64  `json:"transactTime"`
-		Price                   string  `json:"price"`
-		OrigQty                 float64 `json:"origQty"`
-		ExecutedQty             float64 `json:"executedQty"`
-		CummulativeQuoteQty     float64 `json:"cummulativeQuoteQty"`
-		Status                  string  `json:"status"`
-		TimeInForce             string  `json:"timeInForce"`
-		Type                    string  `json:"type"`
-		Side                    string  `json:"side"`
-		StopPrice               string  `json:"stopPrice"`
-		WorkingTime             int64   `json:"workingTime"`
-		SelfTradePreventionMode string  `json:"selfTradePreventionMode"`
-		IcebergQty              string  `json:"icebergQty,omitempty"`
-		PreventedMatchId        int64   `json:"preventedMatchId,omitempty"`
-		PreventedQuantity       string  `json:"preventedQuantity,omitempty"`
-		StrategyId              int64   `json:"strategyId,omitempty"`
-		StrategyType            int64   `json:"strategyType,omitempty"`
-		TrailingDelta           string  `json:"trailingDelta,omitempty"`
-		TrailingTime            int64   `json:"trailingTime,omitempty"`
+		Symbol                  string `json:"symbol"`
+		OrderId                 int64  `json:"orderId"`
+		OrderListId             int64  `json:"orderListId"`
+		ClientOrderId           string `json:"clientOrderId"`
+		TransactTime            uint64 `json:"transactTime"`
+		Price                   string `json:"price"`
+		OrigQty                 string `json:"origQty"`
+		ExecutedQty             string `json:"executedQty"`
+		CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
+		Status                  string `json:"status"`
+		TimeInForce             string `json:"timeInForce"`
+		Type                    string `json:"type"`
+		Side                    string `json:"side"`
+		StopPrice               string `json:"stopPrice"`
+		WorkingTime             int64  `json:"workingTime"`
+		SelfTradePreventionMode string `json:"selfTradePreventionMode"`
+		IcebergQty              string `json:"icebergQty,omitempty"`
+		PreventedMatchId        int64  `json:"preventedMatchId,omitempty"`
+		PreventedQuantity       string `json:"preventedQuantity,omitempty"`
+		StrategyId              int64  `json:"strategyId,omitempty"`
+		StrategyType            int64  `json:"strategyType,omitempty"`
+		TrailingDelta           string `json:"trailingDelta,omitempty"`
+		TrailingTime            int64  `json:"trailingTime,omitempty"`
 	} `json:"orderReports"`
 }
 
