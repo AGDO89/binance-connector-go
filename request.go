@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 type secType int
@@ -44,7 +45,14 @@ func (r *request) setParam(key string, value interface{}) *request {
 	if r.query == nil {
 		r.query = url.Values{}
 	}
-	r.query.Set(key, fmt.Sprintf("%v", value))
+
+	//FIX FOR PRICE
+	if key == "price" {
+		r.query.Set(key, strings.TrimRight(strings.TrimRight(fmt.Sprintf("%.20f", value), "0"), "."))
+	} else {
+		r.query.Set(key, fmt.Sprintf("%v", value))
+	}
+
 	return r
 }
 
