@@ -46,8 +46,8 @@ func (r *request) setParam(key string, value interface{}) *request {
 		r.query = url.Values{}
 	}
 
-	//FIX FOR PRICE
-	if key == "price" {
+	//FIX FOR PRICE & STOP PRICE
+	if key == "price" || key == "stopPrice" {
 		r.query.Set(key, strings.TrimRight(strings.TrimRight(fmt.Sprintf("%.20f", value), "0"), "."))
 	} else {
 		r.query.Set(key, fmt.Sprintf("%v", value))
@@ -75,11 +75,11 @@ func (r *request) validate() (err error) {
 }
 
 // Append `WithRecvWindow(insert_recvwindow)` to request to modify the default recvWindow value
-func WithRecvWindow(recvWindow int64) RequestOption {
+/*func WithRecvWindow(recvWindow int64) RequestOption {
 	return func(r *request) {
 		r.recvWindow = recvWindow
 	}
-}
+}*/
 
 // RequestOption define option type for request
 type RequestOption func(*request)
