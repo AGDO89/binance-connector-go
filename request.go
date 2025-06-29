@@ -5,7 +5,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
+	"strconv"
 )
 
 type secType int
@@ -48,7 +48,7 @@ func (r *request) setParam(key string, value interface{}) *request {
 
 	//FIX FOR PRICE & STOP PRICE
 	if key == "price" || key == "stopPrice" {
-		r.query.Set(key, strings.TrimRight(strings.TrimRight(fmt.Sprintf("%.20f", value), "0"), "."))
+		r.query.Set(key, strconv.FormatFloat(value.(float64), 'f', -1, 64))
 	} else {
 		r.query.Set(key, fmt.Sprintf("%v", value))
 	}
