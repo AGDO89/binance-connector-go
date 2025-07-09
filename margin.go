@@ -568,7 +568,7 @@ func (s *MarginAccountCancelAllOrdersService) IsIsolated(isIsolated string) *Mar
 }
 
 // Do send request
-func (s *MarginAccountCancelAllOrdersService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountCancelAllOrdersResponse, err error) {
+func (s *MarginAccountCancelAllOrdersService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountCancelOCOResponse, err error) {
 	r := &request{
 		method:   http.MethodDelete,
 		endpoint: marginAccountCancelAllOrdersEndpoint,
@@ -583,12 +583,12 @@ func (s *MarginAccountCancelAllOrdersService) Do(ctx context.Context, opts ...Re
 	r.setParams(m)
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &MarginAccountCancelAllOrdersResponse{}, err
+		return &MarginAccountCancelOCOResponse{}, err
 	}
-	res = new(MarginAccountCancelAllOrdersResponse)
+	res = new(MarginAccountCancelOCOResponse)
 	err = json.Unmarshal(data, res)
 	if err != nil {
-		return &MarginAccountCancelAllOrdersResponse{}, err
+		return &MarginAccountCancelOCOResponse{}, err
 	}
 	return res, nil
 }
