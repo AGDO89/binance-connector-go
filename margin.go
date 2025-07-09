@@ -586,7 +586,7 @@ func (s *MarginAccountCancelAllOrdersService) Do(ctx context.Context, opts ...Re
 		return []*MarginAccountCancelAllOrdersResponse{}, err
 	}
 	res = make([]*MarginAccountCancelAllOrdersResponse, 0)
-	err = json.Unmarshal(data, res)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
 		return []*MarginAccountCancelAllOrdersResponse{}, err
 	}
