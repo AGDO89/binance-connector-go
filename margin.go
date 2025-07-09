@@ -568,7 +568,7 @@ func (s *MarginAccountCancelAllOrdersService) IsIsolated(isIsolated string) *Mar
 }
 
 // Do send request
-func (s *MarginAccountCancelAllOrdersService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountCancelOCOResponse, err error) {
+func (s *MarginAccountCancelAllOrdersService) Do(ctx context.Context, opts ...RequestOption) (res []*MarginAccountCancelAllOrdersResponse, err error) {
 	r := &request{
 		method:   http.MethodDelete,
 		endpoint: marginAccountCancelAllOrdersEndpoint,
@@ -583,18 +583,18 @@ func (s *MarginAccountCancelAllOrdersService) Do(ctx context.Context, opts ...Re
 	r.setParams(m)
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &MarginAccountCancelOCOResponse{}, err
+		return []*MarginAccountCancelAllOrdersResponse{}, err
 	}
-	res = new(MarginAccountCancelOCOResponse)
+	res = make([]*MarginAccountCancelAllOrdersResponse, 0)
 	err = json.Unmarshal(data, res)
 	if err != nil {
-		return &MarginAccountCancelOCOResponse{}, err
+		return []*MarginAccountCancelAllOrdersResponse{}, err
 	}
 	return res, nil
 }
 
 // MarginAccountCancelAllOrdersResponse define margin account cancel all orders response
-type MarginAccountCancelAllOrdersResponse struct {
+/*type MarginAccountCancelAllOrdersResponse struct {
 	Symbol              string `json:"symbol"`
 	IsIsolated          bool   `json:"isIsolated"`
 	OrigClientOrderId   string `json:"origClientOrderId"`
@@ -609,6 +609,51 @@ type MarginAccountCancelAllOrdersResponse struct {
 	TimeInForce         string `json:"timeInForce"`
 	Type                string `json:"type"`
 	Side                string `json:"side"`
+}*/
+
+type MarginAccountCancelAllOrdersResponse struct {
+	OrderListId             int    `json:"orderListId,omitempty"`
+	ContingencyType         string `json:"contingencyType,omitempty"`
+	OrigClientOrderId       string `json:"origClientOrderId,omitempty"`
+	ClientOrderId           string `json:"clientOrderId,omitempty"`
+	OrderId                 int    `json:"orderId,omitempty"`
+	Price                   string `json:"price,omitempty"`
+	OrigQty                 string `json:"origQty,omitempty"`
+	ExecutedQty             string `json:"executedQty,omitempty"`
+	CummulativeQuoteQty     string `json:"cummulativeQuoteQty,omitempty"`
+	Status                  string `json:"status,omitempty"`
+	TimeInForce             string `json:"timeInForce,omitempty"`
+	OrderType               string `json:"type,omitempty"`
+	Side                    string `json:"side,omitempty"`
+	StopPrice               string `json:"stopPrice,omitempty"`
+	ListStatusType          string `json:"listStatusType,omitempty"`
+	ListOrderStatus         string `json:"listOrderStatus,omitempty"`
+	ListClientOrderId       string `json:"listClientOrderId,omitempty"`
+	TransactionTime         uint64 `json:"transactionTime,omitempty"`
+	Symbol                  string `json:"symbol,omitempty"`
+	IsIsolated              bool   `json:"isIsolated,omitempty"`
+	SelfTradePreventionMode string `json:"selfTradePreventionMode,omitempty"`
+	Orders                  []struct {
+		Symbol        string `json:"symbol,omitempty"`
+		OrderId       int    `json:"orderId,omitempty"`
+		ClientOrderId string `json:"clientOrderId,omitempty"`
+	} `json:"orders,omitempty"`
+	OrderReports []struct {
+		Symbol              string `json:"symbol,omitempty"`
+		OrigClientOrderId   string `json:"origClientOrderId,omitempty"`
+		OrderId             int    `json:"orderId,omitempty"`
+		OrderListId         int    `json:"orderListId,omitempty"`
+		ClientOrderId       string `json:"clientOrderId,omitempty"`
+		Price               string `json:"price,omitempty"`
+		OrigQty             string `json:"origQty,omitempty"`
+		ExecutedQty         string `json:"executedQty,omitempty"`
+		CummulativeQuoteQty string `json:"cummulativeQuoteQty,omitempty"`
+		Status              string `json:"status,omitempty"`
+		TimeInForce         string `json:"timeInForce,omitempty"`
+		OrderType           string `json:"type,omitempty"`
+		Side                string `json:"side,omitempty"`
+		StopPrice           string `json:"stopPrice,omitempty"`
+	} `json:"orderReports,omitempty"`
 }
 
 // Get Cross Margin Transfer History (USER_DATA) API Endpoint
